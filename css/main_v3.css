@@ -1,0 +1,161 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+.background {
+    fill: none;
+    pointer-events: all;
+    text-align:justify;
+}
+.background-rect{
+    fill:#f6f6f6;
+}
+.info-window {
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    color: #000000;
+    background: #FFF;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    border: 2px;
+    pointer-events: none;
+}
+.info-table{
+    margin-left: auto;
+    margin-right: auto;
+}
+.selected{
+    stroke: black;
+    stroke-width:0.005px;
+}
+.title{
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+}
+.subtitle{
+    text-align:center;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.y-axis path,
+.y-axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+.x-axis path,
+.x-axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+.y-axis text, .x-axis text {
+    font-size: 10px;
+}
+.y-axis-label, .x-axis-label{
+    font-size:12px;
+}
+
+.legend-title{
+    font-size:14px;
+    font-weight:bold;
+    font-style:italic;
+}
+.row{
+    text-align:center;
+}
+.legend-header{
+    font-size:8px;
+    font-weight:bold;
+    text-align:center;
+}
+.legend-subtitle{
+    font-size:7px;
+}
+tspan{
+    padding:0px;
+}
+.legend-map{
+    height:100px;
+}
+
+.row{
+    padding:5px;
+}
+.city-graph, .nav-map, .city-map{
+    height:480px; 
+}
+.col-center{
+    display:inline-block; 
+    float:none; 
+    margin-right:-4px;
+}
+a.button-link{
+    color: #000;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+         color: #820000;
+         text-decoration: none;
+     }
+
+    &:focus {
+     .tab-focus();
+     }
+}
+.city{
+    pointer-events: none;
+}
+select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-padding-end: 20px;
+    -moz-padding-end: 20px;
+    -webkit-padding-start: 2px;
+    -moz-padding-start: 2px;
+    border: 1px solid #AAA;
+    border-radius: 2px;
+    font-size: inherit;
+    margin: 0;
+    overflow: hidden;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.home-link, .select-city{
+    padding:2px;
+}
+
+.masthead {
+    height: 67px;
+    position: relative;
+    background: #990000 url("css-mastheadcontent-bg.jpg") bottom center no-repeat;
+}
+.masthead-scspi-logo {
+    width: auto;
+    height: auto;
+    position: relative;
+    float: left;
+}
+a img {
+    border: none;
+}
+.masthead a {
+    color: #E7D19A;
+}
+.description{
+    max-width:840px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: left;
+}
+.page-footer {
+    clear: both;
+    height: auto;
+    position: relative;
+    background: #ECE8DD url("css-footer-bg.png") top repeat-x;
+    color: #777;
+}

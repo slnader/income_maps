@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <script src="js/angular.min.js"></script>
+    <script src="js/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/topojson.v1.min.js"></script>
+    <script src="js/queue.v1.min.js"></script>
+    <script src="js/colorbrewer.v1.min.js"></script>
+
+    <script type="text/javascript" src="js/main_v3.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main_v3.css">
+</head>
+<body ng-app="myApp" ng-controller="MainCtrl">
+<div class="container-fluid">
+    <div class="row masthead">
+        <div class="masthead-scspi-logo">
+            <a href="http://inequality.com"><img src="images/masthead-cpi-logo.png" alt="The Stanford Poverty Center - SPC logo" border="0"></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 dropdown">
+            <select class="select-city" ng-model="myCity" ng-change="switchCity()" ng-options="city.name for city in cityList"></select>
+        </div>
+        <div class="col-md-6 home-link">
+            <a href="national.html" class="button-link"><button type="button" class="btn btn-default btn-sm">Back to National Page</button></a>
+        </div>
+    </div>
+    <div class="row title">
+        {{cityName}}
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-default btn-sm" data-ng-click="startMap()"><span class="glyphicon glyphicon-play"></span></button>
+        <button type="button" class="btn btn-default btn-sm" data-ng-click="stopMap()"><span class="glyphicon glyphicon-pause"></span></button>
+        <button type="button" class="btn btn-default btn-sm" data-ng-click="resetMap()">Reset</button>
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-default btn-sm" data-ng-click="switchYear(1970)"><span>1970</span></button>
+        <button type="button" class="btn btn-default btn-sm" data-ng-click="switchYear(1980)"><span>1980</span></button>
+        <button type="button" class="btn btn-default btn-sm" data-ng-click="switchYear(1990)"><span>1990</span></button>
+        <button type="button" class="btn btn-default btn-sm" data-ng-click="switchYear(2000)"><span>2000</span></button>
+        <button type="button" class="btn btn-default btn-sm" data-ng-click="switchYear(2009)"><span>2007</span></button>
+    </div>
+    <div class="row">
+        <p>Hover over a census tract for more details.
+            Click on a tract to adjust center of map. Use zoom controls to change zoom.</p>
+        <p>The yellow boundaries represent the central cities within the metro area.</p>
+    </div>
+    <div class="row legend-map"></div>
+    <div class="row">
+        <div class="col-md-2 col-center">
+            <span>Zoom<br/></span>
+            <button type="button" class="btn btn-default btn-lg" data-ng-click="zoomIn()"><span class="glyphicon glyphicon-plus-sign"></span></button>
+            <button type="button" class="btn btn-default btn-lg" data-ng-click="zoomOut()"><span class="glyphicon glyphicon-minus-sign"></span></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-center city-map" boundaries="boundaries" counties="counties" short-year="shortYear" city-name="cityName" year="year"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-center city-graph" id="city" bars="bars" short-year="shortYear" city-name="cityName" year="year"></div>
+    </div>
+    <div class="row page-footer">
+        <hr>
+        <p>Design supported by <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a> and <a href="http://glyphicons.com/" target="_blank">Glyphicons</a>. Created by <a href="http://naderstat.com/about.html" target="_blank">Naderstat</a>.</p>
+        <p><img src="images/IRiSS_logo_small.gif" width="103" height="40" alt="IRISS Logo" style="vertical-align:middle;" />The Stanford Center on Poverty and Inequality is a program of the <a href="http://iriss.stanford.edu">Institute for Research in the Social Sciences.</a></p>
+        <p>Copyright &copy; 2005 - 2011, The Board of Trustees of the <a href="http://www.stanford.edu">Leland
+            Stanford Junior University</a>. All rights reserved. </p>
+    </div>
+</div>
+</body>
+</html>

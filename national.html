@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <script src="js/angular.min.js"></script>
+    <script src="js/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/topojson.v1.min.js"></script>
+    <script src="js/queue.v1.min.js"></script>
+    <script src="js/colorbrewer.v1.min.js"></script>
+
+    <script type="text/javascript" src="js/main_v3.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main_v3.css">
+</head>
+<body ng-app="myApp" ng-controller="MainCtrl">
+<div class="container-fluid">
+    <div class="row masthead">
+            <div class="masthead-scspi-logo">
+                <a href="http://inequality.com"><img src="images/masthead-cpi-logo.png" alt="The Stanford Poverty Center - SPC logo" border="0"></a>
+            </div>
+    </div>
+    <div class="row title">
+        Income Segregation in the United States' Largest Metropolitan Areas
+    </div>
+    <hr>
+    <div class="row subtitle">Segregation Patterns and Trends in Specific Metropolitan Areas</div>
+    <div class="row">
+        <p class="description">This website provides a look at the patterns and trends in residential income
+            segregation over the past forty years in the two dozen most populated metropolitan areas of the
+            United States. We focus here on the segregation of families because segregation may be particularly
+            consequential for children.  Children are less mobile than adults, so where they live may play a much
+            larger role in shaping their experiences, friendships, social interactions, and educational
+            opportunities than it may for adults.
+        </p>
+    </div>
+    <div class="row">
+        <p class="description">Use the map or the dropdown menu below to navigate to different
+            metropolitan areas and explore how segregation patterns have changed over time in any of these places.</p>
+    </div>
+    <div class="row">
+        <select class="select-city" ng-model="myCity" ng-change="cityLink()" ng-options="city.name for city in cityList"></select>
+    </div>
+    <div class="row nav-map" national="national" centroids="centroids"></div>
+    <div class="row subtitle">
+        The disappearance of middle class neighborhoods nationwide
+    </div>
+    <div class="row">
+        <p class="description">Over the past forty years, income inequality in the United States
+            has grown rapidly. The top 1% of earners earned 21% of all income in the United States
+            in 2012, <em>two and a half times </em> the 8.4% share they earned in 1970. A family at the 90th
+            percentile of the income distribution now earns almost 10 times as much as a family at
+            the 10th percentile of the income distribution; in 1970 the same families' incomes would
+            have differed by a factor of 6.</p>
+    </div>
+    <div class="row">
+        <p class="description">One consequence of this rising income inequality has been a similarly sharp
+            increase in residential income segregation.  As the chart below illustrates, in 1970, two-thirds
+            of American families in large metropolitan areas  lived in middle-income neighborhoods: neighborhoods
+            with median incomes between 80% and 125% of the median income in their metropolitan area.  By 2007,
+            that number had declined by a third: only 43% of families lived in such neighborhoods. Instead, a
+            growing number of families now live in neighborhoods that are either very poor or very affluent.
+            Middle-class neighborhoods, like the middle class, are rapidly disappearing.</p>
+    </div>
+    <div class="row legend-map" id="national"></div>
+    <div class="row city-graph" nationalbars="nationalbars" id="national" category-lookup="categoryLookup"> </div>
+    <div class="row">
+        <p class="subtitle">Data Sources and Calculations</p>
+    </div>
+    <div class="row">
+        <p class="description">
+            The data here are from the 1970, 1980, 1990, and 2000 U.S. Census and the 2005-09 American Community
+            Survey (we refer to the 2005-09 period as "2007" for simplicity here).  The Census and American Community
+            Survey provide information on the distribution of family income in each census tract (a census tract is a
+            neighborhood with a population of roughly 4,000 people).
+        </p>
+        <p class="description">
+            For each year, we calculated the median income of families in each of the largest metropolitan areas,
+            and the median income of families in each census tract in those metropolitan areas.  We then computed,
+            for each of these census tracts, the ratio (r) of the tract's median family income to that of
+            its metropolitan area. Based on this ratio, we classified each tract as affluent (r&ge;1.50);
+            high-income (1.25&le;r&lt;1.50); high middle-income (1.00&le;r&lt;1.25); low middle-income (0.80&le;r&lt;1.00);
+            low-income (0.67&le;r&lt;0.80); or poor (r&lt;0.67).  An affluent neighborhood, therefore, is one where
+            more than half of the families have incomes at least one-and-a-half times greater than the median
+            income in their metropolitan area. Likewise, a poor neighborhood is one where more than half of the
+            families have incomes less than two-thirds of the median income in their metropolitan area.
+            These definitions make it possible to compare neighborhood income levels over time, even as the
+            income distribution in metropolitan areas changes.  They also allow us to compare patterns across
+            metropolitan areas, despite differences in their local income distribution and cost-of-living.
+
+        </p>
+        <p class="description">
+            In 1970 and 1980, not all areas of the United States were divided into census tracts.
+            On the maps on the following pages, these "non-tracted areas" are shown in white, indicating we
+            have no income data for those places.  Generally, only sparsely-populated semi-rural regions on
+            the periphery of metropolitan areas were non-tracted in 1970 and 1980; the absence of data for
+            these places has little effect on the calculation of segregation trends.
+        </p>
+    </div>
+    <div class="row">
+        <p class="subtitle">Further Reading and Resources</p>
+        <p class="description">For more information on income segregation patterns, trends, and causes, and
+            for more detail on the data and methods used to produce the figures on this site, please see:</p>
+        <p class="description">
+            Sean F. Reardon and Kendra Bischoff.
+            <a href="http://www.jstor.org/discover/10.1086/657114?uid=3739560&uid=2&uid=4&uid=3739256&sid=21104525211253" target="_blank">
+                Income Inequality and Income Segregation.</a>
+            American Journal of Sociology, Vol. 116, No. 4 (January 2011), pp. 1092-1153.
+        </p>
+        <p class="description">
+            Sean F. Reardon and Kendra Bischoff. <a href="http://www.s4.brown.edu/us2010/Data/Report/report111111.pdf" target="_blank">
+            Growth in the Residential Segregation of Families by Income, 1970-2009.</a>
+            US2010 Project. (November 2011)
+        </p>
+        <p class="description">
+            Kendra Bischoff and Sean F. Reardon. <a href="http://www.s4.brown.edu/us2010/Data/Report/report10162013.pdf" target="_blank">
+            Residential Segregation by Income, 1970-2009.</a> US2010 Project. (October 2013)
+        </p>
+    </div>
+    <div class="row">
+        <p class="subtitle">Data Downloads</p>
+        <p class="description"><a href="data/js/tract-download.zip" target="_blank">Download tract-level data </a> for the metropolitan areas shown here.</p>
+        <p class="description"><a href="data/csv/metro-download.xlsx" target="_blank">Download metropolitan area data </a> for the metropolitan areas shown here.</p>
+        <p class="description"><a href="http://www.s4.brown.edu/us2010/Data/Data.htm" target="_blank">Download additional segregation measures</a> for all U.S. metropolitan areas from the US2010 Project.</p>
+    </div>
+    <div class="row">
+        <p class="subtitle">Questions?</p>
+        <p class="description">Send an email to sean.reardon "at" stanford.edu or kbischoff "at" cornell.edu.</p>
+    </div>
+    <div class="row page-footer">
+            <hr>
+            <p>Design supported by <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a> and <a href="http://glyphicons.com/" target="_blank">Glyphicons</a>. Created by <a href="http://naderstat.com/about.html" target="_blank">Naderstat</a>.</p>
+            <p><img src="images/IRiSS_logo_small.gif" width="103" height="40" alt="IRISS Logo" style="vertical-align:middle;" />The Stanford Center on Poverty and Inequality is a program of the <a href="http://iriss.stanford.edu">Institute for Research in the Social Sciences.</a></p>
+            <p>Copyright &copy; 2005 - 2011, The Board of Trustees of the <a href="http://www.stanford.edu">Leland
+            Stanford Junior University</a>. All rights reserved. </p>
+    </div>
+</div>
+</body>
+</html>
